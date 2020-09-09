@@ -1,0 +1,25 @@
+{
+    "description": "Zoom API connector",
+    "type": "neos-package",
+    "name": "punktde/flow-zoom-api",
+    "license": "MIT",
+    "require": {
+        "neos/flow": ">5.1",
+        "guzzlehttp/guzzle": "^6 || ^7",
+        "sainsburys/guzzle-oauth2-plugin": "*",
+        "symfony/serializer": "^4.0",
+        "symfony/property-access": "^4.1",
+        "firebase/php-jwt": "^5.0",
+        "eljam/guzzle-jwt-middleware": "^0.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "PunktDe\\Zoom\\Api\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "PunktDe.Zoom.Api"
+        }
+    }
+}

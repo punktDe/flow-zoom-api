@@ -1,0 +1,9 @@
+PunktDe:
+  Zoom:
+    Api:
+      clientId: 'qXqwZfumR_SmQZE50-nuxQ'
+      clientSecret: 'uYyVRUnXTonIsPtxstdx1TrypfkrCOWMAXBR'
+      baseUri: 'https://api.zoom.us'
+      defaults:
+        channel: default
+        locale: de_DE

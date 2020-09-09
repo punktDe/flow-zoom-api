@@ -1,0 +1,189 @@
+{
+    "properties": {
+        /** @var string */
+        protected $topic;
+
+        /**
+         * Possible Options:
+         * 1 => Instant Meeting
+         * 2 => Scheduled Meeting
+         * 3 => Recurring Meeting with no fixed time
+         * 8 => Recurring Meeting with fixed time
+         * @var int
+         */
+        protected $type = 2;
+
+        /** @var string */
+        protected $start_time;
+
+        /** @var int */
+        protected $duration;
+
+        /** @var string */
+        protected $timezone;
+
+        /** @var string */
+        protected $password;
+
+        /** @var string */
+        protected $agenda;
+
+        /** @var string[] */
+        protected $settings;
+        "settings": {
+            "type": "object",
+            "description": "Meeting settings.",
+            "properties": {
+                "host_video": {
+                    "type": "boolean",
+                    "description": "Start video when the host joins the meeting."
+                },
+                "participant_video": {
+                    "type": "boolean",
+                    "description": "Start video when participants join the meeting."
+                },
+                "cn_meeting": {
+                    "type": "boolean",
+                    "description": "Host meeting in China.",
+                    "default": false
+                },
+                "in_meeting": {
+                    "type": "boolean",
+                    "description": "Host meeting in India.",
+                    "default": false
+                },
+                "join_before_host": {
+                    "type": "boolean",
+                    "description": "Allow participants to join the meeting before the host starts the meeting. This field can only used for scheduled or recurring meetings.\n\n**Note:** If waiting room is enabled, the **join before host** setting will be disabled.",
+                    "default": false
+                },
+                "mute_upon_entry": {
+                    "type": "boolean",
+                    "description": "Mute participants upon entry.",
+                    "default": false
+                },
+                "watermark": {
+                    "type": "boolean",
+                    "description": "Add watermark when viewing a shared screen.",
+                    "default": false
+                },
+                "use_pmi": {
+                    "type": "boolean",
+                    "description": "Use Personal Meeting ID instead of an automatically generated meeting ID. It can only be used for scheduled meetings, instant meetings and recurring meetings with no fixed time.",
+                    "default": false
+                },
+                "approval_type": {
+                    "type": "integer",
+                    "default": 2,
+                    "description": "`0` - Automatically approve.<br>`1` - Manually approve.<br>`2` - No registration required.",
+                    "enum": [
+                        0,
+                        1,
+                        2
+                    ],
+                    "x-enum-descriptions": [
+                        "Automatically Approve",
+                        "Manually Approve",
+                        "No Registration Required"
+                    ]
+                },
+                "registration_type": {
+                    "type": "integer",
+                    "description": "Registration type. Used for recurring meeting with fixed time only. <br>`1` Attendees register once and can attend any of the occurrences.<br>`2` Attendees need to register for each occurrence to attend.<br>`3` Attendees register once and can choose one or more occurrences to attend.",
+                    "default": 1,
+                    "enum": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "x-enum-descriptions": [
+                        "Attendees register once and can attend any of the occurrences",
+                        "Attendees need to register for each occurrence to attend",
+                        "Attendees register once and can choose one or more occurrences to attend"
+                    ]
+                },
+                "audio": {
+                    "type": "string",
+                    "description": "Determine how participants can join the audio portion of the meeting.<br>`both` - Both Telephony and VoIP.<br>`telephony` - Telephony only.<br>`voip` - VoIP only.",
+                    "default": "both",
+                    "enum": [
+                        "both",
+                        "telephony",
+                        "voip"
+                    ],
+                    "x-enum-descriptions": [
+                        "Both Telephony and VoIP",
+                        "Telephony only",
+                        "VoIP only"
+                    ]
+                },
+                "auto_recording": {
+                    "type": "string",
+                    "description": "Automatic recording:<br>`local` - Record on local.<br>`cloud` -  Record on cloud.<br>`none` - Disabled.",
+                    "default": "none",
+                    "enum": [
+                        "local",
+                        "cloud",
+                        "none"
+                    ],
+                    "x-enum-descriptions": [
+                        "Record to local device",
+                        "Record to cloud",
+                        "No Recording"
+                    ]
+                },
+                "alternative_hosts": {
+                    "type": "string",
+                    "description": "Alternative host's emails or IDs: multiple values separated by a comma."
+                },
+                "close_registration": {
+                    "type": "boolean",
+                    "description": "Close registration after event date",
+                    "default": false
+                },
+                "waiting_room": {
+                    "type": "boolean",
+                    "description": "Enable waiting room. Note that if the value of this field is set to `true`, it will override and disable the `join_before_host` setting."
+                },
+                "global_dial_in_countries": {
+                    "type": "array",
+                    "description": "List of global dial-in countries",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "contact_name": {
+                    "type": "string",
+                    "description": "Contact name for registration"
+                },
+                "contact_email": {
+                    "type": "string",
+                    "description": "Contact email for registration"
+                },
+                "registrants_email_notification": {
+                    "type": "boolean",
+                    "description": "Send email notifications to registrants about approval, cancellation, denial of the registration. The value of this field must be set to true in order to use the `registrants_confirmation_email` field."
+                },
+                "meeting_authentication": {
+                    "type": "boolean",
+                    "description": "Only [authenticated](https://support.zoom.us/hc/en-us/articles/360037117472-Authentication-Profiles-for-Meetings-and-Webinars) users can join meeting if the value of this field is set to `true`."
+                },
+                "authentication_option": {
+                    "type": "string",
+                    "description": "Specify the authentication type for users to join a meeting with`meeting_authentication` setting set to `true`. The value of this field can be retrieved from the `id` field within `authentication_options` array in the response of [Get User Settings API](https://marketplace.zoom.us/docs/api-reference/zoom-api/users/usersettings)."
+                },
+                "authentication_domains": {
+                    "type": "string",
+                    "description": "Meeting authentication domains. This option, allows you to specify the rule so that Zoom users, whose email address contains a certain domain, can join the meeting. You can either provide multiple domains, using a comma in between and/or use a wildcard for listing domains."
+                },
+                "additional_data_center_regions": {
+                    "description": "Enable additional [data center regions](https://support.zoom.us/hc/en-us/articles/360042411451-Selecting-data-center-regions-for-hosted-meetings-and-webinars) for this meeting. Provide the value in the form of array of country code(s) for the countries which are available as data center regions in the [account settings](https://zoom.us/account/setting) but have been opt out of in the user settings. For instance, let's say that in your account settings, the data center regions that have been selected are Europe, Honkong, Australia, India, Latin America, Japan, China, United States,and Canada. The complete list of available data center regions for your account is: [\"EU\", \"HK\", \"AU\", \"IN\", \"LA\", \"TY\", \"CN\", \"US\", \"CA\"]. In [user settings](https://zoom.us/profile/setting), you have opted out of India(IN) and Japan(TY) for meeting and webinar traffic routing. If you would like, you can still include India and Japan as additional data centers for this meeting using this field. To include India and Japan as additional data center regions, you would provide [\"IN\", \"TY\"] as the value.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
