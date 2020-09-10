@@ -30,7 +30,10 @@ class RegistrantResource extends AbstractResource
      */
     protected function getPatchFields(): array
     {
-        return [];
+        return [
+            'email' => true,
+            'registrant_id' => true
+        ];
     }
 
     protected function getDtoClass(): string

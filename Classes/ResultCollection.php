@@ -18,17 +18,17 @@ class ResultCollection implements Countable, IteratorAggregate, ArrayAccess
     /**
      * @var int
      */
-    protected $currentPage;
+    protected $page_number;
 
     /**
      * @var int
      */
-    protected $pagesTotal;
+    protected $page_count;
 
     /**
      * @var int
      */
-    protected $elementsTotal;
+    protected $total_records;
 
     /**
      * @var mixed[]
@@ -333,54 +333,54 @@ class ResultCollection implements Countable, IteratorAggregate, ArrayAccess
     /**
      * @return int
      */
-    public function getCurrentPage(): int
+    public function getPageNumber(): int
     {
-        return $this->currentPage;
+        return $this->page_number;
     }
 
     /**
      * @return int
      */
-    public function getPagesTotal(): int
+    public function getPageCount(): int
     {
-        return $this->pagesTotal;
+        return $this->page_count;
     }
 
     /**
      * @return int
      */
-    public function getElementsTotal(): int
+    public function getTotalRecords(): int
     {
-        return $this->elementsTotal;
+        return $this->total_records;
     }
 
     /**
-     * @param int $currentPage
+     * @param int $page_number
      * @return ResultCollection
      */
-    public function setCurrentPage(int $currentPage): ResultCollection
+    public function setPageNumber(int $page_number): ResultCollection
     {
-        $this->currentPage = $currentPage;
+        $this->page_number = $page_number;
         return $this;
     }
 
     /**
-     * @param int $pagesTotal
+     * @param int $page_count
      * @return ResultCollection
      */
-    public function setPagesTotal(int $pagesTotal): ResultCollection
+    public function setPageCount(int $page_count): ResultCollection
     {
-        $this->pagesTotal = $pagesTotal;
+        $this->page_count = $page_count;
         return $this;
     }
 
     /**
-     * @param int $elementsTotal
+     * @param int $total_records
      * @return ResultCollection
      */
-    public function setElementsTotal(int $elementsTotal): ResultCollection
+    public function setTotalRecords(int $total_records): ResultCollection
     {
-        $this->elementsTotal = $elementsTotal;
+        $this->total_records = $total_records;
         return $this;
     }
 }

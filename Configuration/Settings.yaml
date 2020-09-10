@@ -4,3 +4,4 @@ PunktDe:
       clientId: ''
       clientSecret: ''
       baseUri: ''
+      zoomAccountIdentifier: ''

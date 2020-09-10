@@ -145,7 +145,7 @@ class Client
     {
         $requiredSettingKeys = ['baseUri', 'clientSecret', 'clientId'];
         foreach ($requiredSettingKeys as $requiredSettingKey) {
-            if (trim($this->$requiredSettingKey) === '') {
+            if (empty($this->$requiredSettingKey) || trim($this->$requiredSettingKey) === '') {
                 throw new ZoomApiConfigurationException(sprintf('The required configuration setting %s for the Zoom API was not set or empty', $requiredSettingKey), 1572349688);
             }
         }

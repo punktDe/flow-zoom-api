@@ -333,9 +333,9 @@ abstract class AbstractResource implements ResourceInterface
 
             $responseArray = $this->jsonDecoder->decode((string)$responseContentsString, JsonEncoder::FORMAT);
 
-            $resultCollection->setCurrentPage($responseArray['page_size'] ?? 0);
-            $resultCollection->setPagesTotal((int)floor((int)$responseArray['total_records'] / (int)$responseArray['page_size']) ?? 0);
-            $resultCollection->setElementsTotal($responseArray['total_records'] ?? 0);
+            $resultCollection->setPageNumber((int)$responseArray['page_number'] ?? 0);
+            $resultCollection->setPageCount((int)$responseArray['page_count'] ?? 0);
+            $resultCollection->setTotalRecords((int)$responseArray['total_records'] ?? 0);
 
             if (!isset($responseArray[$this->determineResourceName()]) || !is_array($responseArray[$this->determineResourceName()])) {
                 return $resultCollection;

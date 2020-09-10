@@ -211,7 +211,7 @@ class Meeting implements ApiDtoInterface
      */
     public function findRegistrants(): ResultCollection
     {
-        return (new RegistrantResource())->getAll(null, 100, null, $this->getIdentifier());
+        return (new RegistrantResource())->getAll([], 100, [], $this->getIdentifier());
     }
 
     public function getIdentifier(): string
