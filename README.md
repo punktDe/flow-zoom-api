@@ -19,7 +19,11 @@ The installation is done with composer:
 
 * Create a set of JWT API-Credentials
     * Log-in to your Zoom-Account and [create a new App](https://marketplace.zoom.us/develop/create)   
-* Configure URL and client credentials in your settings.
+* Configure the required settings:
+    * clientId
+    * clientSecret
+    * baseUri
+    * zoomAccountIdentifier (your account's email-address) 
 
 # Usage Examples
 
