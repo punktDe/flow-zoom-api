@@ -15,7 +15,7 @@ install:
   - composer install --no-interaction
   - cd ..
   - rm -rf neos-base-distribution/Packages/Application/PunktDe.Zoom.Api
-  - mv archivist neos-base-distribution/Packages/Application/PunktDe.Zoom.Api
+  - mv flow-zoom-api neos-base-distribution/Packages/Application/PunktDe.Zoom.Api
   - cd neos-base-distribution
 script:
   - bin/phpunit --colors --stop-on-failure -c Build/BuildEssentials/PhpUnit/UnitTests.xml Packages/Application/PunktDe.Zoom.Api/Tests/Unit
