@@ -1,9 +1,9 @@
 PunktDe:
   Zoom:
     Api:
-      clientId: 'qXqwZfumR_SmQZE50-nuxQ'
-      clientSecret: 'uYyVRUnXTonIsPtxstdx1TrypfkrCOWMAXBR'
-      baseUri: 'https://api.zoom.us'
+      clientId: '%env:ZOOM_CLIENT_ID%'
+      clientSecret: '%env:ZOOM_CLIENT_SECRET%'
+      baseUri: '%env:ZOOM_BASE_URI%'
       defaults:
         channel: default
         locale: de_DE
