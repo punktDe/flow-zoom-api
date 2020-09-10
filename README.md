@@ -1,6 +1,6 @@
 # PunktDe.Zoom.Api
 
-[![Latest Stable Version](https://poser.pugx.org/punktDe/flow-zoom-api/v/stable)](https://packagist.org/packages/punktDe/flow-zoom-api) [![Total Downloads](https://poser.pugx.org/punktDe/flow-zoom-api/downloads)](https://packagist.org/packages/punktDe/flow-zoom-api) [![License](https://poser.pugx.org/punktDe/flow-zoom-api/license)](https://packagist.org/packages/punktDe/flow-zoom-api)
+[![Latest Stable Version](https://poser.pugx.org/punktDe/flow-zoom-api/v/stable)](https://packagist.org/packages/punktDe/flow-zoom-api) [![Build Status](https://travis-ci.org/punktDe/zoom-api.svg?branch=master)](https://travis-ci.org/punktDe/zoom-api) [![Total Downloads](https://poser.pugx.org/punktDe/flow-zoom-api/downloads)](https://packagist.org/packages/punktDe/flow-zoom-api) [![License](https://poser.pugx.org/punktDe/flow-zoom-api/license)](https://packagist.org/packages/punktDe/flow-zoom-api)
 
 This [Flow](https://flow.neos.io) package provides a programmable interface to the [Zoom API](https://marketplace.zoom.us/docs/api-reference/zoom-api/).
 
