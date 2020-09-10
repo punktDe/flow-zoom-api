@@ -20,7 +20,7 @@ The installation is done with composer:
 
 ## Configuration
 
-* Create a set of JWT API-Credentials
+* Create a set of JWT API-credentials
     * Log-in to your Zoom-Account and [create a new App](https://marketplace.zoom.us/develop/create)   
 * Configure the required settings:
     * clientId
@@ -30,8 +30,8 @@ The installation is done with composer:
 
 # Usage Examples
 
-#### Find a single Meetings by its identifier and host (user)
-You need to provide an identifier for the host (user) of the meeting, since the endpoint does not allow to list all Meetings in an account
+#### Find a single meeting by its identifier and host (user)
+You need to provide an identifier for the host (user) of the meeting, since the api endpoint has no way of listing all meetings in an account
 
 	/**
      * @Flow\Inject
