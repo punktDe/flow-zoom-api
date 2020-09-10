@@ -6,7 +6,6 @@
     "require": {
         "neos/flow": ">5.1",
         "guzzlehttp/guzzle": "^6 || ^7",
-        "sainsburys/guzzle-oauth2-plugin": "*",
         "symfony/serializer": "^4.0",
         "symfony/property-access": "^4.1",
         "firebase/php-jwt": "^5.0",
