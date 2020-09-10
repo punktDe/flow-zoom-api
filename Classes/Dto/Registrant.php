@@ -11,6 +11,9 @@ namespace PunktDe\Zoom\Api\Dto;
 class Registrant implements ApiDtoInterface
 {
     /** @var string */
+    protected $id;
+
+    /** @var string */
     protected $email;
 
     /** @var string */
@@ -60,6 +63,28 @@ class Registrant implements ApiDtoInterface
 
     /** @var string */
     protected $language;
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function setId(string $id): Registrant
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * This is needed to ensure that the RegistrantResponse is correctly mapped
+     * @param string $registrant_id
+     * @return Registrant
+     */
+    public function setRegistrantId(string $registrant_id): Registrant
+    {
+        $this->id = $registrant_id;
+        return $this;
+    }
 
     /**
      * A users e-mail is used as the identifier in accordance with the zoom API-docs
