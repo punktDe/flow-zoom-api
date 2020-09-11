@@ -1,0 +1,407 @@
+{
+  "type": "object",
+  "description": "Webinar object.",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "description": "Unique identifier for a Webinar. Each Webinar instance will generate its own UUID(i.e., after a Webinar ends, a new UUID will be generated for the next instance of the Webinar). Once a Webinar ends, the value of uuid for the same webinar will be different from when it was scheduled."
+    },
+    "id": {
+      "type": "integer",
+      "description": "Webinar ID in \"**long**\" format(represented as int64 data type in JSON), also known as the webinar number.",
+      "format": "int64"
+    },
+    "host_id": {
+      "type": "string",
+      "description": "ID of the user set as host of the webinar."
+    },
+    "host_email": {
+      "type": "string",
+      "description": "Email address of the meeting host.",
+      "format": "email"
+    },
+    "registrants_confirmation_email": {
+      "type": "boolean",
+      "description": "Specify whether or not registrants of this Webinar should receieve confirmation emails."
+    },
+    "template_id": {
+      "type": "string",
+      "description": "Unique identifier of the Webinar template. Use this field only if you would like to [schedule the webinar using an existing template](https://support.zoom.us/hc/en-us/articles/115001079746-Webinar-Templates#schedule). The value of this field can be retrieved from List"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Webinar topic.",
+      "maxLength": 200
+    },
+    "type": {
+      "type": "integer",
+      "description": "Webinar Types:<br>`5` - Webinar.<br>`6` - Recurring webinar with no fixed time.<br>`9` - Recurring webinar with a fixed time.",
+      "default": 5,
+      "enum": [
+        5,
+        6,
+        9
+      ],
+      "x-enum-descriptions": [
+        "Webinar",
+        "Recurring Webinar with no fixed time",
+        "Recurring Webinar with fixed time"
+      ]
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Webinar start time in GMT/UTC."
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Webinar duration."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Time zone to format start_time."
+    },
+    "agenda": {
+      "type": "string",
+      "description": "Webinar agenda."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Create time."
+    },
+    "start_url": {
+      "type": "string",
+      "description": "<br><aside>The <code>start_url</code> of a Webinar is a URL using which a host or an alternative host can start the Webinar. This URL should only be used by the host of the meeting and should not be shared with anyone other than the host of the Webinar. \n\nThe expiration time for the <code>start_url</code> field listed in the response of [Create a Webinar API](https://marketplace.zoom.us/docs/api-reference/zoom-api/webinars/webinarcreate) is two hours for all regular users. \n\t\nFor users created using the <code>custCreate</code> option via the [Create Users](https://marketplace.zoom.us/docs/api-reference/zoom-api/users/usercreate) API, the expiration time of the <code>start_url</code> field is 90 days.\n\t\nFor security reasons, to retrieve the latest value for the <code>start_url</code> field programmatically (after expiry), you must call the [Retrieve a Webinar API](https://marketplace.zoom.us/docs/api-reference/zoom-api/webinars/webinar) and refer to the value of the <code>start_url</code> field in the response.</aside><br><br><br>"
+    },
+    "join_url": {
+      "type": "string",
+      "description": "URL to join the Webinar. This URL should only be shared with the users who should be invited to the Webinar."
+    },
+    "tracking_fields": {
+      "type": "array",
+      "description": "Tracking fields",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Tracking fields type"
+          },
+          "value": {
+            "type": "string",
+            "description": "Tracking fields value"
+          }
+        }
+      }
+    },
+    "occurrences": {
+      "type": "array",
+      "description": "Array of occurrence objects.",
+      "items": {
+        "type": "object",
+        "description": "Occurence object. This object is only returned for Recurring Webinars.",
+        "properties": {
+          "occurrence_id": {
+            "type": "string",
+            "description": "Occurrence ID: Unique Identifier that identifies an occurrence of a recurring webinar. [Recurring webinars](https://support.zoom.us/hc/en-us/articles/216354763-How-to-Schedule-A-Recurring-Webinar) can have a maximum of 50 occurrences."
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start time."
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Duration."
+          },
+          "status": {
+            "type": "string",
+            "description": "Occurrence status."
+          }
+        }
+      }
+    },
+    "settings": {
+      "type": "object",
+      "description": "Webinar settings.",
+      "properties": {
+        "host_video": {
+          "type": "boolean",
+          "description": "Start video when host joins webinar."
+        },
+        "panelists_video": {
+          "type": "boolean",
+          "description": "Start video when panelists join webinar."
+        },
+        "practice_session": {
+          "type": "boolean",
+          "description": "Enable practice session.",
+          "default": false
+        },
+        "hd_video": {
+          "type": "boolean",
+          "description": "Default to HD video.",
+          "default": false
+        },
+        "approval_type": {
+          "type": "integer",
+          "default": 2,
+          "description": "`0` - Automatically approve.<br>`1` - Manually approve.<br>`2` - No registration required.",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "x-enum-descriptions": [
+            "Automatically Approve",
+            "Manually Approve",
+            "No Registration Required"
+          ]
+        },
+        "registration_type": {
+          "type": "integer",
+          "description": "Registration types. Only used for recurring webinars with a fixed time.<br>`1` - Attendees register once and can attend any of the webinar sessions.<br>`2` - Attendees need to register for each session in order to attend.<br>`3` - Attendees register once and can choose one or more sessions to attend.",
+          "default": 1,
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "x-enum-descriptions": [
+            "Attendees register once and can attend any of the occurrences",
+            "Attendees need to register for each occurrence to attend",
+            "Attendees register once and can choose one or more occurrences to attend"
+          ]
+        },
+        "audio": {
+          "type": "string",
+          "description": "Determine how participants can join the audio portion of the webinar.",
+          "default": "both",
+          "enum": [
+            "both",
+            "telephony",
+            "voip"
+          ],
+          "x-enum-descriptions": [
+            "Both Telephony and VoIP",
+            "Telephony only",
+            "VoIP only"
+          ]
+        },
+        "auto_recording": {
+          "type": "string",
+          "description": "Automatic recording:<br>`local` - Record on local.<br>`cloud` -  Record on cloud.<br>`none` - Disabled.",
+          "default": "none",
+          "enum": [
+            "local",
+            "cloud",
+            "none"
+          ],
+          "x-enum-descriptions": [
+            "Record to local device",
+            "Record to cloud",
+            "No Recording"
+          ]
+        },
+        "enforce_login": {
+          "type": "boolean",
+          "description": "Only signed in users can join this meeting.\n\n**This field is deprecated and will not be supported in the future.**  <br><br>As an alternative, use the \"meeting_authentication\", \"authentication_option\" and \"authentication_domains\" fields to understand the [authentication configurations](https://support.zoom.us/hc/en-us/articles/360037117472-Authentication-Profiles-for-Meetings-and-Webinars) set for the Webinar."
+        },
+        "enforce_login_domains": {
+          "type": "string",
+          "description": "Only signed in users with specified domains can join meetings.\n\n**This field is deprecated and will not be supported in the future.**  <br><br>As an alternative, use the \"meeting_authentication\", \"authentication_option\" and \"authentication_domains\" fields to understand the [authentication configurations](https://support.zoom.us/hc/en-us/articles/360037117472-Authentication-Profiles-for-Meetings-and-Webinars) set for the Webinar."
+        },
+        "alternative_hosts": {
+          "type": "string",
+          "description": "Alternative host emails or IDs. Multiple values separated by comma."
+        },
+        "close_registration": {
+          "type": "boolean",
+          "description": "Close registration after event date."
+        },
+        "show_share_button": {
+          "type": "boolean",
+          "description": "Show social share buttons on the registration page."
+        },
+        "allow_multiple_devices": {
+          "type": "boolean",
+          "description": "Allow attendees to join from multiple devices."
+        },
+        "on_demand": {
+          "type": "boolean",
+          "description": "Make the webinar on-demand",
+          "default": false
+        },
+        "global_dial_in_countries": {
+          "type": "array",
+          "description": "List of global dial-in countries",
+          "items": {
+            "type": "string"
+          }
+        },
+        "contact_name": {
+          "type": "string",
+          "description": "Contact name for registration"
+        },
+        "contact_email": {
+          "type": "string",
+          "description": "Contact email for registration"
+        },
+        "registrants_confirmation_email": {
+          "description": "Send confirmation email to registrants",
+          "type": "boolean"
+        },
+        "registrants_restrict_number": {
+          "type": "integer",
+          "default": 0,
+          "description": "Restrict number of registrants for a webinar. By default, it is set to `0`. A `0` value means that the restriction option is disabled. Provide a number higher than 0 to restrict the webinar registrants by the that number.",
+          "minimum": 0,
+          "maximum": 20000
+        },
+        "notify_registrants": {
+          "type": "boolean",
+          "description": "Send notification email to registrants when the host updates a webinar."
+        },
+        "post_webinar_survey": {
+          "type": "boolean",
+          "description": "Zoom will open a survey page in attendees' browsers after leaving the webinar"
+        },
+        "survey_url": {
+          "type": "string",
+          "description": "Survey url for post webinar survey"
+        },
+        "registrants_email_notification": {
+          "type": "boolean",
+          "description": "Send email notifications to registrants about approval, cancellation, denial of the registration. The value of this field must be set to true in order to use the `registrants_confirmation_email` field."
+        },
+        "meeting_authentication": {
+          "type": "boolean",
+          "description": "`true`- Only authenticated users can join Webinar."
+        },
+        "authentication_option": {
+          "type": "string",
+          "description": "Webinar authentication option id."
+        },
+        "authentication_domains": {
+          "type": "string",
+          "description": "If user has configured [\"Sign Into Zoom with Specified Domains\"](https://support.zoom.us/hc/en-us/articles/360037117472-Authentication-Profiles-for-Meetings-and-Webinars#h_5c0df2e1-cfd2-469f-bb4a-c77d7c0cca6f) option, this will list the domains that are authenticated."
+        },
+        "authentication_name": {
+          "type": "string",
+          "description": "Authentication name set in the [authentication profile](https://support.zoom.us/hc/en-us/articles/360037117472-Authentication-Profiles-for-Meetings-and-Webinars#h_5c0df2e1-cfd2-469f-bb4a-c77d7c0cca6f)."
+        }
+      }
+    },
+    "recurrence": {
+      "type": "object",
+      "description": "Recurrence object. Use this object only for a webinar of type `9` i.e., a recurring webinar with fixed time. ",
+      "title": "Recurrence Webinar",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "integer",
+          "description": "Recurrence webinar types:<br>`1` - Daily.<br>`2` - Weekly.<br>`3` - Monthly.",
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "x-enum-descriptions": [
+            "Daily",
+            "Weekly",
+            "Monthly"
+          ]
+        },
+        "repeat_interval": {
+          "type": "integer",
+          "description": "Define the interval at which the webinar should recur. For instance, if you would like to schedule a Webinar that recurs every two months, you must set the value of this field as `2` and the value of the `type` parameter as `3`. \n\nFor a daily webinar, the maximum interval you can set is `90` days. For a weekly webinar, the maximum interval that you can set is `12` weeks. For a monthly webinar, the maximum interval that you can set is `3` months."
+        },
+        "weekly_days": {
+          "type": "integer",
+          "description": "Use this field **only if you're scheduling a recurring webinar of type** `2` to state which day(s) of the week the webinar should repeat. <br>\n**Note:** If you would like the webinar to occur on multiple days of a week, you should provide comma separated values for this field.<br>`1`  - Sunday. <br>`2` - Monday.<br>`3` - Tuesday.<br>`4` -  Wednesday.<br>`5` -  Thursday.<br>`6` - Friday.<br>`7` - Saturday.",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "x-enum-descriptions": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ]
+        },
+        "monthly_day": {
+          "type": "integer",
+          "description": "Use this field **only if you're scheduling a recurring webinar of type** `3` to state which day in a month, the webinar should recur. The value range is from 1 to 31.\n\nFor instance, if you would like the webinar to recur on 23rd of each month, provide `23` as the value of this field and `1` as the value of the `repeat_interval` field. Instead, if you would like the webinar to recur once every three months, on 23rd of the month, change the value of the `repeat_interval` field to `3`."
+        },
+        "monthly_week": {
+          "type": "integer",
+          "description": "Use this field **only if you're scheduling a recurring webinar of type** `3` to state the week of the month when the webinar should recur. If you use this field, **you must also use the `monthly_week_day` field to state the day of the week when the webinar should recur.** <br>`-1` - Last week of the month.<br>`1` - First week of the month.<br>`2` - Second week of the month.<br>`3` - Third week of the month.<br>`4` - Fourth week of the month.",
+          "enum": [
+            -1,
+            1,
+            2,
+            3,
+            4
+          ],
+          "x-enum-descriptions": [
+            "Last week",
+            "First week",
+            "Second week",
+            "Third week",
+            "Fourth week"
+          ]
+        },
+        "monthly_week_day": {
+          "type": "integer",
+          "description": "Use this field **only if you're scheduling a recurring webinar of type** `3` to state a specific day in a week when the monthly webinar should recur. To use this field, you must also use the `monthly_week` field. <br>`1` - Sunday.<br>`2` - Monday.<br>`3` - Tuesday.<br>`4` -  Wednesday.<br>`5` - Thursday.<br>`6` - Friday.<br>`7` - Saturday.",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "x-enum-descriptions": [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ]
+        },
+        "end_times": {
+          "type": "integer",
+          "description": "Select how many times the webinar will recur before it is canceled. (Cannot be used with \"end_date_time\".)",
+          "default": 1,
+          "maximum": 50
+        },
+        "end_date_time": {
+          "type": "string",
+          "description": "Select a date when the webinar will recur before it is canceled. Should be in UTC time, such as 2017-11-25T12:00:00Z. (Cannot be used with \"end_times\".)",
+          "format": "date-time"
+        }
+      }
+    },
+    "password": {
+      "type": "string",
+      "description": "Webinar passcode. \n\nIf \"Require a passcode when scheduling new meetings\" setting has been **enabled** **and** [locked](https://support.zoom.us/hc/en-us/articles/115005269866-Using-Tiered-Settings#locked) for the user, the passcode field will be autogenerated for the Webinar in the response even if it is not provided in the API request. <br><br>\n**Note:** If the account owner or the admin has configured [minimum passcode requirement settings](https://support.zoom.us/hc/en-us/articles/360033559832-Meeting-and-webinar-passwords#h_a427384b-e383-4f80-864d-794bf0a37604), the passcode value provided here must meet those requirements. <br><br>If the requirements are enabled, you can view those requirements by calling either the [Get User Settings API](https://marketplace.zoom.us/docs/api-reference/zoom-api/users/usersettings) or the  [Get Account Settings](https://marketplace.zoom.us/docs/api-reference/zoom-api/accounts/accountsettings) API. \n\n\n\n\n\n",
+      "maxLength": 10
+    }
+  }
+}

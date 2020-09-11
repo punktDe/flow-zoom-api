@@ -8,7 +8,10 @@ namespace PunktDe\Zoom\Api\Resource;
  * All rights reserved.
  */
 
-class MeetingResource extends AbstractEventResource
+class MeetingRegistrantResource extends AbstractRegistrantResource
 {
-
+    protected function determineParentResourceName(): string
+    {
+        return 'meetings';
+    }
 }
