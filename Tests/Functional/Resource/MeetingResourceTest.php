@@ -9,6 +9,7 @@ namespace PunktDe\Zoom\Api\Tests\Functional\Resource;
  */
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Tests\FunctionalTestCase;
 use PunktDe\Zoom\Api\Dto\Meeting;
 use PunktDe\Zoom\Api\Dto\Registrant;
@@ -29,9 +30,9 @@ class MeetingResourceTest extends FunctionalTestCase
 
     /**
      * @var string
-     * @Flow\InjectConfiguration(path='zoomAccountIdentifier')
      */
     protected $zoomAccountIdentifier;
+
     /**
      * Running the tests requires a zoom-api config
      * Since there is no sandbox available, credentials have to be manually set.
@@ -40,6 +41,14 @@ class MeetingResourceTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setup();
+
+        $configurationManager = $this->objectManager->get(ConfigurationManager::class);
+        $this->zoomAccountIdentifier = (string)$configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_SETTINGS, 'PunktDe.Zoom.Api.zoomAccountIdentifier');
+
+        if ($this->zoomAccountIdentifier === '') {
+            $this->markTestSkipped('No zoom-api configuration present');
+        }
+
         try {
             $this->meetingResource = $this->objectManager->get(MeetingResource::class);
             $this->registrantResource = $this->objectManager->get(RegistrantResource::class);
