@@ -17,7 +17,9 @@ The following Endpoints are currently implemented, see the [Admin API documentat
 
 The installation is done with composer:
 
-    composer require punktde/flow-zoom-api
+```bash
+composer require punktde/flow-zoom-api
+```
 
 ## Configuration
 
@@ -34,37 +36,42 @@ The installation is done with composer:
 #### Find a single meeting by its identifier and host (user)
 You need to provide an identifier for the host (user) of the meeting, since the api endpoint has no way of listing all meetings in an account
 
-	/**
-     * @Flow\Inject
-     * @var PunktDe\Zoom\Api\Resource\MeetingResource
-     */
-    protected $meetings;
+```php
+/**
+* @Flow\Inject
+* @var PunktDe\Zoom\Api\Resource\MeetingResource
+*/
+  protected $meetings;
 
-    /**
-     * @param string $identifier
-     * @param string $userIdentifier
-     * @return PunktDe\Zoom\Api\Dto\Meeting
-     */
+   /**
+    * @param string $identifier
+    * @param string $userIdentifier
+    * @return PunktDe\Zoom\Api\Dto\Meeting
+    */
     private function findOneMeetingByIdentifier(string $identifier, string $userIdentifier): PunktDe\Zoom\Api\Dto\Product {
-        return $this->meetings->get($identifier, $userIdentifier);
+     return $this->meetings->get($identifier, $userIdentifier);
     }
-    
-#### Add a registrant to an existing meeting
 
-    /**
-     * @Flow\Inject
-     * @var PunktDe\Zoom\Api\Resource\MeetingRegistrantResource
-     */
-    protected $registrants;
+ ```  
 
-    /**
-     * @return Participant|null
-     */
-    private function addRegistrantToExistingMeeting(string $meetingIdentifier): ?PunktDe\Zoom\Api\Dto\Registrant
-    {
-        $registrant = (new Registrant())
-            ->setEmail('info@acme.co')
-            ->setFirstName('Pooh')
-            ->setLastName('The Bear');
-        return $this->registrants->add($registrant, $meetingIdentifier);
-     }
+#### Add a participant to an existing meeting
+
+```php
+/**
+* @Flow\Inject
+* @var PunktDe\Zoom\Api\Resource\ParticipantResource
+*/
+  protected $participants;
+
+  /**
+   * @return Participant|null
+   */
+  private function addParticipantToExistingMeeting(string $meetingIdentifier): ?PunktDe\Zoom\Api\Dto\Participant
+  {
+      $participant = (new Participant())
+          ->setEmail('info@acme.co')
+          ->setFirstName('Pooh')
+          ->setLastName('The Bear');
+      return $this->participants->add($participant, $meetingIdentifier);
+   }
+```
