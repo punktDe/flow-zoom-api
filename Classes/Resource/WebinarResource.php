@@ -8,7 +8,7 @@ namespace PunktDe\Zoom\Api\Resource;
  * All rights reserved.
  */
 
-class MeetingResource extends AbstractEventResource
+class WebinarResource extends AbstractEventResource
 {
 
 }

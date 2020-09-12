@@ -8,7 +8,8 @@ This [Flow](https://flow.neos.io) package provides a programmable interface to t
 The following Endpoints are currently implemented, see the [Admin API documentation](https://marketplace.zoom.us/docs/api-reference/zoom-api/) for details:
 
 * Meeting
-* Participant
+* Webinar
+* Registrant
 
 # Setup
 
@@ -50,7 +51,9 @@ You need to provide an identifier for the host (user) of the meeting, since the 
     private function findOneMeetingByIdentifier(string $identifier, string $userIdentifier): PunktDe\Zoom\Api\Dto\Product {
      return $this->meetings->get($identifier, $userIdentifier);
     }
- ```   
+
+ ```  
+
 #### Add a participant to an existing meeting
 
 ```php

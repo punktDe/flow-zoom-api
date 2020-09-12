@@ -15,8 +15,8 @@ use PunktDe\Zoom\Api\Dto\Meeting;
 use PunktDe\Zoom\Api\Dto\Registrant;
 use PunktDe\Zoom\Api\Exception\ZoomApiConfigurationException;
 use PunktDe\Zoom\Api\Exception\ZoomApiException;
+use PunktDe\Zoom\Api\Resource\MeetingRegistrantResource;
 use PunktDe\Zoom\Api\Resource\MeetingResource;
-use PunktDe\Zoom\Api\Resource\RegistrantResource;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerExceptionInterface;
 
 class MeetingResourceTest extends FunctionalTestCase
@@ -25,8 +25,8 @@ class MeetingResourceTest extends FunctionalTestCase
     /** @var MeetingResource */
     protected $meetingResource;
 
-    /** @var RegistrantResource */
-    protected $registrantResource;
+    /** @var MeetingRegistrantResource */
+    protected $meetingRegistrantResource;
 
     /**
      * @var string
@@ -51,7 +51,7 @@ class MeetingResourceTest extends FunctionalTestCase
 
         try {
             $this->meetingResource = $this->objectManager->get(MeetingResource::class);
-            $this->registrantResource = $this->objectManager->get(RegistrantResource::class);
+            $this->meetingRegistrantResource = $this->objectManager->get(MeetingRegistrantResource::class);
         } catch (ZoomApiConfigurationException $e) {
             $this->markTestSkipped('No zoom-api configuration present');
         }
@@ -86,7 +86,7 @@ class MeetingResourceTest extends FunctionalTestCase
             ->setFirstName($registrantFirstName);
 
         /** @var Registrant $registrant */
-        $registrant = $this->registrantResource->add($registrant, $meeting->getIdentifier());
+        $registrant = $this->meetingRegistrantResource->add($registrant, $meeting->getIdentifier());
 
         $registrants = $meeting->findRegistrants();
 
