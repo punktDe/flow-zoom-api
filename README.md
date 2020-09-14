@@ -54,24 +54,24 @@ You need to provide an identifier for the host (user) of the meeting, since the 
 
  ```  
 
-#### Add a participant to an existing meeting
+#### Add a registrant to an existing meeting
 
 ```php
 /**
 * @Flow\Inject
-* @var PunktDe\Zoom\Api\Resource\ParticipantResource
+* @var PunktDe\Zoom\Api\Resource\MeetingRegistrantResource
 */
-  protected $participants;
+  protected $meetingRegistrants;
 
   /**
-   * @return Participant|null
+   * @return Registrant|null
    */
-  private function addParticipantToExistingMeeting(string $meetingIdentifier): ?PunktDe\Zoom\Api\Dto\Participant
+  private function addRegistrantToExistingMeeting(string $meetingIdentifier): ?PunktDe\Zoom\Api\Dto\Registrant
   {
-      $participant = (new Participant())
+      $registrant = (new Registrant())
           ->setEmail('info@acme.co')
           ->setFirstName('Pooh')
           ->setLastName('The Bear');
-      return $this->participants->add($participant, $meetingIdentifier);
+      return $this->meetingRegistrants->add($registrant, $meetingIdentifier);
    }
 ```
